@@ -178,8 +178,8 @@ Klik icon bulan/matahari di navbar kanan atas.
 Preferensi tersimpan di localStorage.
 ```
 ## Contoh Mode
-![Dark Mode](image.png)
-![Light Mode](image-1.png)
+![Dark Mode](<dokumentasi 1-7.png>)
+![Light Mode](<dokumentasi 1-8.png>)
 
 
 ---
