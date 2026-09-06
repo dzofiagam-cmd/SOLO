@@ -1,8 +1,4 @@
-<?php
-/**
- * db.php - PDO singleton, InfinityFree compatible
- */
-
+﻿<?php
 $configFile = __DIR__ . '/config.php';
 if (!is_file($configFile)) {
     die('Database configuration missing.');
@@ -24,5 +20,7 @@ function db()
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
     ));
+    $pdo->exec("SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'");
+    $pdo->exec("SET CHARACTER SET utf8mb4");
     return $pdo;
 }

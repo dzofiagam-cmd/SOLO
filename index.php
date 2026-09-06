@@ -1,12 +1,4 @@
 ﻿<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-/**
- * RuteSolo - index.php
- * PHP hybrid: query MySQL, inject window.__DEST__ + window.__MODES__
- * Compatible with InfinityFree shared hosting
- */
-
 $destData  = [];
 $modesData = [];
 
@@ -67,6 +59,7 @@ try {
 
 $destJson  = json_encode($destData,  JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 $modesJson = json_encode($modesData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html>
 <html lang="id" data-theme="dark">
@@ -106,6 +99,21 @@ $modesJson = json_encode($modesData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPE
             <a href="#tentang">Tentang</a>
         </nav>
         <div class="nav-actions">
+            <div class="nav-search-wrap">
+                <button class="search-trigger" id="searchTrigger" aria-label="Cari destinasi">
+                    <i data-lucide="search" width="17" height="17"></i>
+                </button>
+                <div class="nav-search-dropdown" id="navSearchDropdown" hidden>
+                    <div class="search-box">
+                        <i data-lucide="search" aria-hidden="true"></i>
+                        <input id="searchInput" type="text"
+                               placeholder="Cari destinasi..."
+                               autocomplete="off" aria-label="Cari destinasi wisata">
+                    </div>
+                    <div class="suggestions" id="suggestions" hidden
+                         role="listbox" aria-label="Hasil pencarian"></div>
+                </div>
+            </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Aktifkan light mode" aria-pressed="true">
                 <i data-lucide="moon" class="icon-moon" width="17" height="17"></i>
                 <i data-lucide="sun"  class="icon-sun"  width="17" height="17" style="display:none"></i>
@@ -140,18 +148,6 @@ $modesJson = json_encode($modesData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPE
                 Temukan destinasi budaya, kuliner, dan rekreasi favorit
                 beserta pilihan transportasi terbaik menuju ke sana.
             </p>
-
-            <div class="search-wrap" id="rute">
-                <div class="search-box">
-                    <i data-lucide="search" aria-hidden="true"></i>
-                    <input id="searchInput" type="search"
-                           placeholder="Cari destinasi, misal: Keraton, Pasar Klewer..."
-                           autocomplete="off" aria-label="Cari destinasi wisata">
-                    <kbd class="search-kbd" aria-hidden="true">&#8984;K</kbd>
-                </div>
-                <div class="suggestions" id="suggestions" hidden
-                     role="listbox" aria-label="Hasil pencarian"></div>
-            </div>
 
             <div class="chips" id="chips" role="group" aria-label="Filter moda transportasi"></div>
 
@@ -292,7 +288,7 @@ $modesJson = json_encode($modesData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPE
         </div>
         <p>ITechnoCup 2026 &middot; Panduan transportasi wisata Kota Solo</p>
         <p class="footer-credit">
-            Dibuat untuk warga & dan wisatawan kota Solo
+            Dibuat untuk warga dan wisatawan kota Solo
         </p>
     </div>
 </footer>
