@@ -40,11 +40,11 @@ function integerParam($name, $required = false)
 {
     $value = isset($_GET[$name]) ? $_GET[$name] : null;
     if ($value === null || $value === '') {
-        if ($required) fail("Query parameter '{$name}' is required.", 400);
+        if ($required) fail("Parameter '{$name}' diperlukan.", 400);
         return null;
     }
     if (filter_var($value, FILTER_VALIDATE_INT) === false || (int) $value < 1) {
-        fail("Query parameter '{$name}' must be a positive integer.", 400);
+        fail("Parameter '{$name}' harus integer positif.", 400);
     }
     return (int) $value;
 }
@@ -53,10 +53,10 @@ function coordinate($name)
 {
     $value = isset($_GET[$name]) ? $_GET[$name] : null;
     if ($value === null || $value === '') return null;
-    if (!is_numeric($value) || !is_finite((float) $value)) fail("Query parameter '{$name}' must be numeric.", 400);
+    if (!is_numeric($value) || !is_finite((float) $value)) fail("Parameter '{$name}' harus numerik.", 400);
     $number = (float) $value;
-    if ($name === 'origin_lat' && ($number < -90 || $number > 90)) fail('origin_lat must be between -90 and 90.', 400);
-    if ($name === 'origin_lng' && ($number < -180 || $number > 180)) fail('origin_lng must be between -180 and 180.', 400);
+    if ($name === 'origin_lat' && ($number < -90 || $number > 90)) fail('origin_lat harus -90 hingga 90.', 400);
+    if ($name === 'origin_lng' && ($number < -180 || $number > 180)) fail('origin_lng harus -180 hingga 180.', 400);
     return $number;
 }
 
@@ -73,12 +73,12 @@ try {
             db()->query('SELECT 1')->fetchColumn();
             $tables = db()->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name IN ('destinations', 'transport_modes', 'routes')")->fetchColumn();
             if ((int) $tables !== 3) {
-                setupFail('schema_missing', 'Database terhubung, tetapi schema.sql belum di-import lengkap.');
+                setupFail('schema_missing', 'Schema belum lengkap.');
             }
             respond(array('status' => 'ok', 'database' => 'connected', 'schema' => 'ready'));
         } catch (PDOException $error) {
             error_log('RuteSolo health database error: ' . $error->getMessage());
-            setupFail('database_unavailable', 'Koneksi database gagal. Periksa host, nama database, user, password, dan PDO MySQL.');
+            setupFail('database_unavailable', 'Koneksi database gagal.');
         }
     }
 
@@ -104,7 +104,7 @@ try {
         $modeId        = integerParam('mode_id');
         $lat           = coordinate('origin_lat');
         $lng           = coordinate('origin_lng');
-        if (($lat === null) !== ($lng === null)) fail('origin_lat and origin_lng must be provided together.', 400);
+        if (($lat === null) !== ($lng === null)) fail('origin_lat dan origin_lng harus disediakan bersama.', 400);
         $sql    = 'SELECT r.id, r.destination_id, d.name AS destination_name, r.mode_id, m.slug AS mode, m.name AS mode_name, r.description, r.fare, r.duration_minutes, d.latitude, d.longitude FROM routes r JOIN destinations d ON d.id=r.destination_id JOIN transport_modes m ON m.id=r.mode_id WHERE 1=1';
         $params = array();
         if ($destinationId !== null) { $sql .= ' AND r.destination_id = :destination_id'; $params['destination_id'] = $destinationId; }
@@ -135,7 +135,7 @@ try {
 
 } catch (PDOException $error) {
     error_log('RuteSolo API database error: ' . $error->getMessage());
-    setupFail('database_unavailable', 'Database belum siap. Jalankan schema.sql dan periksa konfigurasi MySQL.');
+    setupFail('database_unavailable', 'Database tidak tersedia.');
 } catch (Exception $error) {
     error_log('RuteSolo API runtime error: ' . $error->getMessage());
     fail('Internal server error.', 500);

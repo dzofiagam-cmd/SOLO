@@ -1,6 +1,4 @@
-﻿/* =========================
-   DESIGN CONSTANTS
-========================= */
+﻿
 
 const COLORS = {
     indigo: 'var(--mode-bst)',
@@ -12,46 +10,42 @@ const COLORS = {
 
 const API_BASE = '/api';
 
-/* =========================
-   TRANSPORT MODES (fallback)
-========================= */
+// Fallback modes
 
 const MODES_FALLBACK = [
-    { id: 'all',    label: 'Semua Moda',       icon: 'layout-grid', color: 'var(--mode-all)'    },
-    { id: 'bst',    label: 'BST',              icon: 'bus',         color: 'var(--mode-bst)'    },
-    { id: 'krl',    label: 'KRL',              icon: 'train-front', color: 'var(--mode-krl)'    },
-    { id: 'angkot', label: 'Angkot',           icon: 'car',         color: 'var(--mode-angkot)' },
-    { id: 'ojol',   label: 'Ojol - Last-mile', icon: 'bike',        color: 'var(--mode-ojol)'   }
+    { id: 'all', label: 'Semua Moda', icon: 'layout-grid', color: 'var(--mode-all)' },
+    { id: 'bst', label: 'BST', icon: 'bus', color: 'var(--mode-bst)' },
+    { id: 'krl', label: 'KRL', icon: 'train-front', color: 'var(--mode-krl)' },
+    { id: 'angkot', label: 'Angkot', icon: 'car', color: 'var(--mode-angkot)' },
+    { id: 'ojol', label: 'Ojol', icon: 'bike', color: 'var(--mode-ojol)' }
 ];
 
-/* =========================
-   DESTINATION DATA (fallback)
-========================= */
+// Fallback destinations
 
 const DEST_FALLBACK = [
-    { id:1, name:'Keraton Kasunanan Surakarta', category:'Budaya & Sejarah', desc:'Istana resmi Kasunanan Surakarta, pusat budaya Jawa yang masih aktif digunakan.', tags:['keraton','istana','budaya','sejarah','jawa','kerajaan'], coords:[-7.5775,110.8291], img:'assets/images/keraton-surakarta.jpg', options:[['bst','Koridor 2 - Kartasura ke Gladag','Rp 3.700','25 menit'],['angkot','Jalur AC - Pasar Gede ke Gladag','Rp 5.000','20 menit'],['ojol','Titik jemput terdekat ke Gladag','Rp 12rb-18rb','15 menit']] },
-    { id:2, name:'Pasar Klewer', category:'Belanja', desc:'Pusat grosir batik terbesar di Solo, tepat di sisi barat Alun-alun Utara.', tags:['pasar','belanja','batik','grosir','textile'], coords:[-7.5732,110.8319], img:'assets/images/pasar-klewer.jpg', options:[['bst','Koridor 1 - Palur ke Klewer','Rp 3.700','30 menit'],['krl','Stasiun Purwosari lanjut angkot 10 menit','Rp 8.000','40 menit'],['ojol','Titik jemput terdekat ke Klewer','Rp 10rb-15rb','12 menit']] },
-    { id:3, name:'Taman Sriwedari', category:'Rekreasi', desc:'Taman hiburan legendaris dengan gedung wayang orang dan area terbuka hijau.', tags:['taman','rekreasi','hiburan','wayang','sriwedari'], coords:[-7.5608,110.8345], img:'assets/images/taman-sriwedari.jpg', options:[['bst','Koridor 2 - Kartasura ke Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B - Gading ke Sriwedari','Rp 5.000','18 menit'],['ojol','Titik jemput terdekat ke Sriwedari','Rp 9rb-14rb','10 menit']] },
-    { id:4, name:'Kampung Batik Kauman', category:'Budaya & Sejarah', desc:'Kampung wisata batik tertua di Solo dengan lorong-lorong rumah kolonial.', tags:['kampung','batik','kauman','budaya','sejarah','kolonial'], coords:[-7.5762,110.8273], img:'assets/images/kampung-batik-kauman.jpg', options:[['bst','Koridor 1 - Palur ke Gladag, jalan kaki 5 menit','Rp 3.700','28 menit'],['ojol','Titik jemput terdekat ke Kauman','Rp 10rb-16rb','13 menit']] },
-    { id:5, name:'Masjid Agung Surakarta', category:'Budaya & Sejarah', desc:'Masjid kerajaan yang berdiri sejak era Pakubuwono III, tepat di samping Pasar Klewer.', tags:['masjid','agung','islam','kerajaan','pakubuwono','sejarah'], coords:[-7.5741,110.8327], img:'assets/images/masjid-agung-surakarta.jpg', options:[['bst','Koridor 2 - Kartasura ke Danar Hadi','Rp 3.700','24 menit'],['krl','Stasiun Purwosari lanjut jalan kaki 8 menit','Rp 8.000','35 menit'],['ojol','Titik jemput terdekat ke Masjid Agung','Rp 9rb-13rb','11 menit']] },
-    { id:6, name:'Gedung Wayang Orang Sriwedari', category:'Rekreasi', desc:'Panggung wayang orang tertua di Indonesia, masih menggelar pertunjukan rutin.', tags:['wayang','orang','sriwedari','teater','budaya','pertunjukan'], coords:[-7.5605,110.8352], img:'assets/images/wayang-orang-sriwedari.jpg', options:[['bst','Koridor 1 - Palur ke Sriwedari','Rp 3.700','35 menit'],['angkot','Jalur A - Gading ke Sriwedari','Rp 6.000','30 menit'],['ojol','Titik jemput terdekat ke Sriwedari','Rp 9rb-14rb','10 menit']] },
-    { id:7, name:'Pura Mangkunegaran', category:'Budaya & Sejarah', desc:'Pura berarsitektur Jawa-Eropa dengan koleksi sejarah Kadipaten Mangkunegaran.', tags:['pura','mangkunegaran','budaya','sejarah','kerajaan','istana'], coords:[-7.5686,110.8227], img:'assets/images/pura-mangkunegaran.jpg', options:[['bst','Koridor 1 - Palur ke Mangkunegaran','Rp 3.700','20 menit'],['krl','Stasiun Solo Balapan jalan kaki 12 menit','Rp 8.000','25 menit'],['ojol','Titik jemput terdekat ke Mangkunegaran','Rp 10rb-16rb','10 menit']] },
-    { id:8, name:'Museum Batik Danar Hadi', category:'Museum', desc:'Museum batik dengan koleksi kain tradisional Nusantara di dalam kompleks House of Danar Hadi.', tags:['museum','batik','danar hadi','budaya','kain','sejarah'], coords:[-7.5680,110.8143], img:'assets/images/museum-batik-danar-hadi.jpg', options:[['bst','Koridor 2 - Kartasura ke Slamet Riyadi','Rp 3.700','24 menit'],['angkot','Jalur kota - Pasar Gede ke Sriwedari','Rp 5.000','20 menit'],['ojol','Titik jemput terdekat ke Danar Hadi','Rp 10rb-16rb','11 menit']] },
-    { id:9, name:'Museum Radya Pustaka', category:'Museum', desc:'Museum tertua di Indonesia yang menyimpan naskah, arca, dan benda bersejarah Jawa.', tags:['museum','radya pustaka','sejarah','budaya','naskah','arca'], coords:[-7.5651,110.8125], img:'assets/images/museum-radya-pustaka.jpg', options:[['bst','Koridor 2 - Kartasura ke Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B - Gading ke Sriwedari','Rp 5.000','18 menit'],['ojol','Titik jemput terdekat ke Radya Pustaka','Rp 9rb-14rb','10 menit']] },
-    { id:10, name:'Benteng Vastenburg', category:'Budaya & Sejarah', desc:'Benteng peninggalan kolonial di pusat kota yang kini menjadi ruang acara dan sejarah.', tags:['benteng','vastenburg','sejarah','kolonial','landmark','kota'], coords:[-7.5697,110.8311], img:'assets/images/benteng-vastenburg.jpg', options:[['bst','Koridor 1 - Palur ke Gladag','Rp 3.700','25 menit'],['krl','Stasiun Solo Balapan lanjut BST','Rp 8.000','30 menit'],['ojol','Titik jemput terdekat ke Vastenburg','Rp 10rb-15rb','12 menit']] },
-    { id:11, name:'Pasar Gede Harjonagoro', category:'Belanja & Kuliner', desc:'Pasar tradisional ikonik untuk berburu jajanan, bahan segar, dan kuliner khas Solo.', tags:['pasar gede','pasar','kuliner','jajanan','belanja','tradisional'], coords:[-7.5693,110.8302], img:'assets/images/pasar-gede.jpg', options:[['bst','Koridor 1 - Palur ke Pasar Gede','Rp 3.700','27 menit'],['angkot','Terminal Tirtonadi ke Pasar Gede','Rp 5.000','22 menit'],['ojol','Titik jemput terdekat ke Pasar Gede','Rp 9rb-15rb','12 menit']] },
-    { id:12, name:'Kampung Batik Laweyan', category:'Belanja & Budaya', desc:'Kampung saudagar batik dengan workshop, toko kain, dan gang bersejarah yang khas.', tags:['laweyan','kampung batik','batik','belanja','budaya','kampung wisata'], coords:[-7.5688,110.7953], img:'assets/images/kampung-batik-laweyan.jpg', options:[['bst','Koridor 2 - Kartasura ke Laweyan','Rp 3.700','30 menit'],['angkot','Jalur A - Gading ke Laweyan','Rp 5.000','25 menit'],['ojol','Titik jemput terdekat ke Laweyan','Rp 12rb-18rb','14 menit']] },
-    { id:13, name:'Taman Balekambang', category:'Taman & Rekreasi', desc:'Taman kota bersejarah dengan ruang hijau, danau, serta area rekreasi keluarga.', tags:['balekambang','taman','rekreasi','keluarga','ruang hijau','danau'], coords:[-7.5542,110.8075], img:'assets/images/taman-balekambang.jpg', options:[['bst','Koridor 1 - Palur ke Manahan','Rp 3.700','28 menit'],['angkot','Pasar Gede ke Balekambang','Rp 5.000','24 menit'],['ojol','Titik jemput terdekat ke Balekambang','Rp 10rb-16rb','13 menit']] },
-    { id:14, name:'Solo Safari', category:'Taman & Rekreasi', desc:'Destinasi edukasi satwa dan rekreasi keluarga dengan area jelajah yang interaktif.', tags:['solo safari','kebun binatang','satwa','rekreasi','keluarga','edukasi'], coords:[-7.5942,110.8654], img:'assets/images/solo-safari.jpg', options:[['bst','Koridor 3 - Terminal Tirtonadi ke Jurug','Rp 3.700','35 menit'],['angkot','Jalur timur - Palur ke Jurug','Rp 6.000','30 menit'],['ojol','Titik jemput terdekat ke Solo Safari','Rp 15rb-24rb','18 menit']] },
-    { id:15, name:'Taman Cerdas Jebres', category:'Taman & Rekreasi', desc:'Ruang edukasi dan bermain publik yang ramah keluarga di kawasan Jebres.', tags:['taman cerdas','jebres','taman','edukasi','keluarga','rekreasi'], coords:[-7.5596,110.8540], img:'assets/images/taman-cerdas-jebres.jpg', options:[['bst','Koridor 1 - Palur ke Jebres','Rp 3.700','25 menit'],['angkot','Pasar Gede ke Jebres','Rp 5.000','20 menit'],['ojol','Titik jemput terdekat ke Taman Cerdas','Rp 9rb-15rb','11 menit']] },
-    { id:16, name:'Galabo Solo', category:'Kuliner', desc:'Sentra kuliner malam di pusat kota untuk menikmati hidangan khas Solo dan jajanan lokal.', tags:['galabo','kuliner','kuliner malam','jajanan','makanan','street food'], coords:[-7.5700,110.8290], img:'assets/images/galabo-solo.jpg', options:[['bst','Koridor 1 - Palur ke Gladag','Rp 3.700','25 menit'],['krl','Stasiun Solo Balapan lanjut BST','Rp 8.000','30 menit'],['ojol','Titik jemput terdekat ke Galabo','Rp 9rb-14rb','10 menit']] },
-    { id:17, name:'Gedung Djoeang 45', category:'Budaya & Sejarah', desc:'Bangunan bersejarah dekat Benteng Vastenburg yang menjadi ruang kreatif dan kuliner.', tags:['gedung djoeang','djoeang 45','sejarah','kolonial','kuliner','landmark'], coords:[-7.5708,110.8304], img:'assets/images/gedung-djoeang-45.svg', options:[['bst','Koridor 1 - Palur ke Gladag','Rp 3.700','25 menit'],['angkot','Pasar Gede ke Gladag','Rp 5.000','20 menit'],['ojol','Titik jemput terdekat ke Gedung Djoeang','Rp 9rb-14rb','11 menit']] },
-    { id:18, name:'Museum Keris Nusantara', category:'Museum', desc:'Museum tematik yang mengenalkan keris sebagai warisan budaya dan karya seni Nusantara.', tags:['museum keris','keris','museum','budaya','pusaka','nusantara'], coords:[-7.5725,110.8129], img:'assets/images/museum-keris-nusantara.jpg', options:[['bst','Koridor 2 - Kartasura ke Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B - Gading ke Sriwedari','Rp 5.000','18 menit'],['ojol','Titik jemput terdekat ke Museum Keris','Rp 9rb-14rb','10 menit']] }
-    ,{ id:19, name:'Stadion Manahan Solo', category:'Olahraga & Rekreasi', desc:'Stadion berstandar internasional dan ikon kota Solo, sering menggelar konser dan event besar.', tags:['stadion','manahan','olahraga','konser','event','sepakbola'], coords:[-7.5497,110.8084], img:'assets/images/stadion-manahan.jpg', options:[['bst','Koridor 1 - Palur ke Manahan','Rp 3.700','20 menit'],['angkot','Pasar Gede ke Manahan','Rp 5.000','18 menit'],['ojol','Titik jemput terdekat ke Manahan','Rp 9rb-14rb','10 menit']] }
-    ,{ id:20, name:'Solo Grand Mall', category:'Belanja', desc:'Pusat perbelanjaan modern di jantung kota Solo dengan beragam tenant fashion, kuliner, dan hiburan.', tags:['mall','belanja','fashion','kuliner','hiburan','modern'], coords:[-7.5580,110.8220], img:'assets/images/solo-grand-mall.jpg', options:[['bst','Koridor 2 - Kartasura ke SGM','Rp 3.700','18 menit'],['krl','Stasiun Solo Balapan jalan kaki 15 menit','Rp 8.000','25 menit'],['ojol','Titik jemput terdekat ke SGM','Rp 8rb-13rb','8 menit']] }
-    ,{ id:21, name:'Taman Satwa Taru Jurug', category:'Taman & Rekreasi', desc:'Kebun binatang tertua di Solo dengan koleksi satwa dan area bermain keluarga di tepi Bengawan Solo.', tags:['kebun binatang','jurug','satwa','taman','rekreasi','keluarga'], coords:[-7.5530,110.8640], img:'assets/images/taman-jurug.jpg', options:[['bst','Koridor 3 - Terminal Tirtonadi ke Jurug','Rp 3.700','30 menit'],['angkot','Jalur timur ke Jurug','Rp 5.000','25 menit'],['ojol','Titik jemput terdekat ke Jurug','Rp 12rb-18rb','15 menit']] }
-    ,{ id:22, name:'Rumah Atsiri Indonesia', category:'Wisata Edukasi', desc:'Museum dan taman tanaman aromatik interaktif dengan pemandangan indah khas pedesaan Solo.', tags:['rumah atsiri','aromatik','museum','edukasi','taman','wisata'], coords:[-7.6042,110.7153], img:'assets/images/rumah-atsiri.jpg', options:[['ojol','Titik jemput terdekat ke Rumah Atsiri','Rp 20rb-30rb','30 menit']] }
-];/* Use DB data injected by PHP, normalize to consistent shape */
+    { id:1, name:'Keraton Kasunanan Surakarta', category:'Budaya & Sejarah', desc:'Istana resmi Kasunanan Surakarta, pusat budaya Jawa yang masih aktif digunakan.', tags:['keraton','istana','budaya','sejarah','jawa','kerajaan'], coords:[-7.5775,110.8291], img:'assets/images/keraton-surakarta.jpg', options:[['bst','Koridor 2 Kartasura-Gladag','Rp 3.700','25 menit'],['angkot','Jalur AC Pasar Gede-Gladag','Rp 5.000','20 menit'],['ojol','Dari lokasi Anda','Rp 12rb-18rb','15 menit']] },
+    { id:2, name:'Pasar Klewer', category:'Belanja', desc:'Pusat grosir batik terbesar di Solo, tepat di sisi barat Alun-alun Utara.', tags:['pasar','belanja','batik','grosir','textile'], coords:[-7.5732,110.8319], img:'assets/images/pasar-klewer.jpg', options:[['bst','Koridor 1 Palur-Klewer','Rp 3.700','30 menit'],['krl','Stasiun Purwosari + angkot','Rp 8.000','40 menit'],['ojol','Dari lokasi Anda','Rp 10rb-15rb','12 menit']] },
+    { id:3, name:'Taman Sriwedari', category:'Rekreasi', desc:'Taman hiburan legendaris dengan gedung wayang orang dan area terbuka hijau.', tags:['taman','rekreasi','hiburan','wayang','sriwedari'], coords:[-7.5608,110.8345], img:'assets/images/taman-sriwedari.jpg', options:[['bst','Koridor 2 Kartasura-Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B Gading-Sriwedari','Rp 5.000','18 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] },
+    { id:4, name:'Kampung Batik Kauman', category:'Budaya & Sejarah', desc:'Kampung wisata batik tertua di Solo dengan lorong-lorong rumah kolonial.', tags:['kampung','batik','kauman','budaya','sejarah','kolonial'], coords:[-7.5762,110.8273], img:'assets/images/kampung-batik-kauman.jpg', options:[['bst','Koridor 1 Palur-Gladag + jalan kaki','Rp 3.700','28 menit'],['ojol','Dari lokasi Anda','Rp 10rb-16rb','13 menit']] },
+    { id:5, name:'Masjid Agung Surakarta', category:'Budaya & Sejarah', desc:'Masjid kerajaan yang berdiri sejak era Pakubuwono III, tepat di samping Pasar Klewer.', tags:['masjid','agung','islam','kerajaan','pakubuwono','sejarah'], coords:[-7.5741,110.8327], img:'assets/images/masjid-agung-surakarta.jpg', options:[['bst','Koridor 2 Kartasura-Danar Hadi','Rp 3.700','24 menit'],['krl','Stasiun Purwosari + jalan kaki','Rp 8.000','35 menit'],['ojol','Dari lokasi Anda','Rp 9rb-13rb','11 menit']] },
+    { id:6, name:'Gedung Wayang Orang Sriwedari', category:'Rekreasi', desc:'Panggung wayang orang tertua di Indonesia, masih menggelar pertunjukan rutin.', tags:['wayang','orang','sriwedari','teater','budaya','pertunjukan'], coords:[-7.5605,110.8352], img:'assets/images/wayang-orang-sriwedari.jpg', options:[['bst','Koridor 1 Palur-Sriwedari','Rp 3.700','35 menit'],['angkot','Jalur A Gading-Sriwedari','Rp 6.000','30 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] },
+    { id:7, name:'Pura Mangkunegaran', category:'Budaya & Sejarah', desc:'Pura berarsitektur Jawa-Eropa dengan koleksi sejarah Kadipaten Mangkunegaran.', tags:['pura','mangkunegaran','budaya','sejarah','kerajaan','istana'], coords:[-7.5686,110.8227], img:'assets/images/pura-mangkunegaran.jpg', options:[['bst','Koridor 1 Palur-Mangkunegaran','Rp 3.700','20 menit'],['krl','Stasiun Solo Balapan + jalan kaki','Rp 8.000','25 menit'],['ojol','Dari lokasi Anda','Rp 10rb-16rb','10 menit']] },
+    { id:8, name:'Museum Batik Danar Hadi', category:'Museum', desc:'Museum batik dengan koleksi kain tradisional Nusantara di dalam kompleks House of Danar Hadi.', tags:['museum','batik','danar hadi','budaya','kain','sejarah'], coords:[-7.5680,110.8143], img:'assets/images/museum-batik-danar-hadi.jpg', options:[['bst','Koridor 2 Kartasura-Slamet Riyadi','Rp 3.700','24 menit'],['angkot','Pasar Gede-Sriwedari','Rp 5.000','20 menit'],['ojol','Dari lokasi Anda','Rp 10rb-16rb','11 menit']] },
+    { id:9, name:'Museum Radya Pustaka', category:'Museum', desc:'Museum tertua di Indonesia yang menyimpan naskah, arca, dan benda bersejarah Jawa.', tags:['museum','radya pustaka','sejarah','budaya','naskah','arca'], coords:[-7.5651,110.8125], img:'assets/images/museum-radya-pustaka.jpg', options:[['bst','Koridor 2 Kartasura-Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B Gading-Sriwedari','Rp 5.000','18 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] },
+    { id:10, name:'Benteng Vastenburg', category:'Budaya & Sejarah', desc:'Benteng peninggalan kolonial di pusat kota yang kini menjadi ruang acara dan sejarah.', tags:['benteng','vastenburg','sejarah','kolonial','landmark','kota'], coords:[-7.5697,110.8311], img:'assets/images/benteng-vastenburg.jpg', options:[['bst','Koridor 1 Palur-Gladag','Rp 3.700','25 menit'],['krl','Stasiun Solo Balapan + BST','Rp 8.000','30 menit'],['ojol','Dari lokasi Anda','Rp 10rb-15rb','12 menit']] },
+    { id:11, name:'Pasar Gede Harjonagoro', category:'Belanja & Kuliner', desc:'Pasar tradisional ikonik untuk berburu jajanan, bahan segar, dan kuliner khas Solo.', tags:['pasar gede','pasar','kuliner','jajanan','belanja','tradisional'], coords:[-7.5693,110.8302], img:'assets/images/pasar-gede.jpg', options:[['bst','Koridor 1 Palur-Pasar Gede','Rp 3.700','27 menit'],['angkot','Terminal Tirtonadi-Pasar Gede','Rp 5.000','22 menit'],['ojol','Dari lokasi Anda','Rp 9rb-15rb','12 menit']] },
+    { id:12, name:'Kampung Batik Laweyan', category:'Belanja & Budaya', desc:'Kampung saudagar batik dengan workshop, toko kain, dan gang bersejarah yang khas.', tags:['laweyan','kampung batik','batik','belanja','budaya','kampung wisata'], coords:[-7.5688,110.7953], img:'assets/images/kampung-batik-laweyan.jpg', options:[['bst','Koridor 2 Kartasura-Laweyan','Rp 3.700','30 menit'],['angkot','Jalur A Gading-Laweyan','Rp 5.000','25 menit'],['ojol','Dari lokasi Anda','Rp 12rb-18rb','14 menit']] },
+    { id:13, name:'Taman Balekambang', category:'Taman & Rekreasi', desc:'Taman kota bersejarah dengan ruang hijau, danau, serta area rekreasi keluarga.', tags:['balekambang','taman','rekreasi','keluarga','ruang hijau','danau'], coords:[-7.5542,110.8075], img:'assets/images/taman-balekambang.jpg', options:[['bst','Koridor 1 Palur-Manahan','Rp 3.700','28 menit'],['angkot','Pasar Gede-Balekambang','Rp 5.000','24 menit'],['ojol','Dari lokasi Anda','Rp 10rb-16rb','13 menit']] },
+    { id:14, name:'Solo Safari', category:'Taman & Rekreasi', desc:'Destinasi edukasi satwa dan rekreasi keluarga dengan area jelajah yang interaktif.', tags:['solo safari','kebun binatang','satwa','rekreasi','keluarga','edukasi'], coords:[-7.5942,110.8654], img:'assets/images/solo-safari.jpg', options:[['bst','Koridor 3 Terminal-Jurug','Rp 3.700','35 menit'],['angkot','Jalur timur Palur-Jurug','Rp 6.000','30 menit'],['ojol','Dari lokasi Anda','Rp 15rb-24rb','18 menit']] },
+    { id:15, name:'Taman Cerdas Jebres', category:'Taman & Rekreasi', desc:'Ruang edukasi dan bermain publik yang ramah keluarga di kawasan Jebres.', tags:['taman cerdas','jebres','taman','edukasi','keluarga','rekreasi'], coords:[-7.5596,110.8540], img:'assets/images/taman-cerdas-jebres.jpg', options:[['bst','Koridor 1 Palur-Jebres','Rp 3.700','25 menit'],['angkot','Pasar Gede-Jebres','Rp 5.000','20 menit'],['ojol','Dari lokasi Anda','Rp 9rb-15rb','11 menit']] },
+    { id:16, name:'Galabo Solo', category:'Kuliner', desc:'Sentra kuliner malam di pusat kota untuk menikmati hidangan khas Solo dan jajanan lokal.', tags:['galabo','kuliner','kuliner malam','jajanan','makanan','street food'], coords:[-7.5700,110.8290], img:'assets/images/galabo-solo.jpg', options:[['bst','Koridor 1 Palur-Gladag','Rp 3.700','25 menit'],['krl','Stasiun Solo Balapan + BST','Rp 8.000','30 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] },
+    { id:17, name:'Gedung Djoeang 45', category:'Budaya & Sejarah', desc:'Bangunan bersejarah dekat Benteng Vastenburg yang menjadi ruang kreatif dan kuliner.', tags:['gedung djoeang','djoeang 45','sejarah','kolonial','kuliner','landmark'], coords:[-7.5708,110.8304], img:'assets/images/gedung-djoeang-45.svg', options:[['bst','Koridor 1 Palur-Gladag','Rp 3.700','25 menit'],['angkot','Pasar Gede-Gladag','Rp 5.000','20 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','11 menit']] },
+    { id:18, name:'Museum Keris Nusantara', category:'Museum', desc:'Museum tematik yang mengenalkan keris sebagai warisan budaya dan karya seni Nusantara.', tags:['museum keris','keris','museum','budaya','pusaka','nusantara'], coords:[-7.5725,110.8129], img:'assets/images/museum-keris-nusantara.jpg', options:[['bst','Koridor 2 Kartasura-Sriwedari','Rp 3.700','22 menit'],['angkot','Jalur B Gading-Sriwedari','Rp 5.000','18 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] }
+    ,{ id:19, name:'Stadion Manahan Solo', category:'Olahraga & Rekreasi', desc:'Stadion berstandar internasional dan ikon kota Solo, sering menggelar konser dan event besar.', tags:['stadion','manahan','olahraga','konser','event','sepakbola'], coords:[-7.5497,110.8084], img:'assets/images/stadion-manahan.jpg', options:[['bst','Koridor 1 Palur-Manahan','Rp 3.700','20 menit'],['angkot','Pasar Gede-Manahan','Rp 5.000','18 menit'],['ojol','Dari lokasi Anda','Rp 9rb-14rb','10 menit']] }
+    ,{ id:20, name:'Solo Grand Mall', category:'Belanja', desc:'Pusat perbelanjaan modern di jantung kota Solo dengan beragam tenant fashion, kuliner, dan hiburan.', tags:['mall','belanja','fashion','kuliner','hiburan','modern'], coords:[-7.5580,110.8220], img:'assets/images/solo-grand-mall.jpg', options:[['bst','Koridor 2 Kartasura-SGM','Rp 3.700','18 menit'],['krl','Stasiun Solo Balapan + jalan kaki','Rp 8.000','25 menit'],['ojol','Dari lokasi Anda','Rp 8rb-13rb','8 menit']] }
+    ,{ id:21, name:'Taman Satwa Taru Jurug', category:'Taman & Rekreasi', desc:'Kebun binatang tertua di Solo dengan koleksi satwa dan area bermain keluarga di tepi Bengawan Solo.', tags:['kebun binatang','jurug','satwa','taman','rekreasi','keluarga'], coords:[-7.5530,110.8640], img:'assets/images/taman-jurug.jpg', options:[['bst','Koridor 3 Terminal-Jurug','Rp 3.700','30 menit'],['angkot','Jalur timur-Jurug','Rp 5.000','25 menit'],['ojol','Dari lokasi Anda','Rp 12rb-18rb','15 menit']] }
+    ,{ id:22, name:'Rumah Atsiri Indonesia', category:'Wisata Edukasi', desc:'Museum dan taman tanaman aromatik interaktif dengan pemandangan indah khas pedesaan Solo.', tags:['rumah atsiri','aromatik','museum','edukasi','taman','wisata'], coords:[-7.6042,110.7153], img:'assets/images/rumah-atsiri.jpg', options:[['ojol','Dari lokasi Anda','Rp 20rb-30rb','30 menit']] }
+];
 var _rawModes = (window.__MODES__ && window.__MODES__.length) ? window.__MODES__ : null;
 var MODES = _rawModes
     ? _rawModes.map(function(m) {
@@ -66,18 +60,19 @@ var MODES = _rawModes
     : MODES_FALLBACK;
 
 var DEST = (window.__DEST__ && window.__DEST__.length) ? window.__DEST__ : DEST_FALLBACK;
-/* =========================
-   GALLERY DATA
-========================= */
 
-const GALLERY = [
-    ...DEST.slice(0, 5),
-    { ...DEST[5], name: 'Wayang Orang Sriwedari', desc: 'Pertunjukan panggung tertua di Indonesia, masih hidup di tengah kota.' }
-];
 
-/* =========================
-   MODE GRADIENTS
-========================= */
+const GALLERY = (function() {
+    if (!DEST || !DEST.length) return DEST_FALLBACK.slice(0, 6);
+    var base = DEST.slice(0, 5);
+    var sixth = DEST[5];
+    if (sixth) {
+        base.push(Object.assign({}, sixth, { name: 'Wayang Orang Sriwedari', desc: 'Pertunjukan panggung tertua di Indonesia, masih hidup di tengah kota.' }));
+    }
+    return base;
+})();
+
+
 
 const MODE_GRADIENTS = {
     bst:    'linear-gradient(to top, #6366f1cc, #6366f122)',
@@ -87,37 +82,35 @@ const MODE_GRADIENTS = {
     all:    'linear-gradient(to top, #7c3aedcc, #7c3aed22)',
 };
 
-/* =========================
-   ENTRY FEES PER DESTINATION
-   Source: official sites & 2024/2025 data
-========================= */
+// Entry fees
 
 const ENTRY_FEES = {
-    1:  { fee: 15000,  note: 'Tiket masuk area museum & keraton',   free: false },
-    2:  { fee: 0,      note: 'Pasar terbuka, gratis masuk',          free: true  },
-    3:  { fee: 5000,   note: 'Tiket masuk Taman Sriwedari',          free: false },
-    4:  { fee: 0,      note: 'Kampung wisata, bebas dikunjungi',      free: true  },
-    5:  { fee: 0,      note: 'Masjid umum, gratis masuk',             free: true  },
-    6:  { fee: 20000,  note: 'Tiket pertunjukan wayang orang',        free: false },
-    7:  { fee: 30000,  note: 'Tiket masuk museum & pendopo',          free: false },
-    8:  { fee: 35000,  note: 'Tiket masuk museum batik',              free: false },
-    9:  { fee: 5000,   note: 'Tiket masuk museum',                    free: false },
-    10: { fee: 0,      note: 'Area publik, gratis masuk',             free: true  },
-    11: { fee: 0,      note: 'Pasar tradisional, gratis masuk',       free: true  },
-    12: { fee: 0,      note: 'Kampung wisata, gratis masuk',          free: true  },
-    13: { fee: 5000,   note: 'Tiket masuk taman kota',                free: false },
-    14: { fee: 75000,  note: 'Tiket masuk Solo Safari (dewasa)',      free: false },
-    15: { fee: 0,      note: 'Taman edukasi publik, gratis',          free: true  },
-    16: { fee: 0,      note: 'Area kuliner terbuka, gratis masuk',    free: true  },
-    17: { fee: 0,      note: 'Gedung kreatif, gratis masuk',          free: true  },
-    18: { fee: 10000,  note: 'Tiket masuk museum keris',              free: false },
-    19: { fee: 0,      note: 'Stadion publik, gratis akses luar',     free: true  },
-    20: { fee: 0,      note: 'Mall komersial, gratis masuk',          free: true  },
-    21: { fee: 20000,  note: 'Tiket masuk kebun binatang',            free: false },
-    22: { fee: 50000,  note: 'Tiket masuk taman & museum atsiri',     free: false },
+    1:  { fee: 15000, note: 'Tiket masuk', free: false },
+    2:  { fee: 0, note: 'Gratis', free: true },
+    3:  { fee: 5000, note: 'Tiket masuk', free: false },
+    4:  { fee: 0, note: 'Gratis', free: true },
+    5:  { fee: 0, note: 'Gratis', free: true },
+    6:  { fee: 20000, note: 'Tiket pertunjukan', free: false },
+    7:  { fee: 30000, note: 'Tiket masuk', free: false },
+    8:  { fee: 35000, note: 'Tiket masuk', free: false },
+    9:  { fee: 5000, note: 'Tiket masuk', free: false },
+    10: { fee: 0, note: 'Gratis', free: true },
+    11: { fee: 0, note: 'Gratis', free: true },
+    12: { fee: 0, note: 'Gratis', free: true },
+    13: { fee: 5000, note: 'Tiket masuk', free: false },
+    14: { fee: 75000, note: 'Tiket dewasa', free: false },
+    15: { fee: 0, note: 'Gratis', free: true },
+    16: { fee: 0, note: 'Gratis', free: true },
+    17: { fee: 0, note: 'Gratis', free: true },
+    18: { fee: 10000, note: 'Tiket masuk', free: false },
+    19: { fee: 0, note: 'Gratis', free: true },
+    20: { fee: 0, note: 'Gratis', free: true },
+    21: { fee: 20000, note: 'Tiket masuk', free: false },
+    22: { fee: 50000, note: 'Tiket masuk', free: false },
 };
 
 function parseFare(fareStr) {
+    if (!fareStr || typeof fareStr !== 'string') return { min: 0, max: 0 };
     var s = fareStr.replace(/Rp/g,'').replace(/\s/g,'').replace(/\./g,'');
     var parts = s.split('-');
     var parseOne = function(p) {
@@ -136,50 +129,50 @@ function formatRp(num) {
     if (num >= 1000) return 'Rp ' + Math.round(num/1000) + 'rb';
     return 'Rp ' + num;
 }
-/* =========================
-   TRANSPORT POINTS & FARE CALCULATOR
-   Halte BST, stasiun KRL, titik angkot di Solo
-========================= */
+function sanitizeDesc(str) {
+    if (!str || typeof str !== 'string') return str || '';
+    return str
+        .replace(/\uFFFD/g, '\u00B7')
+        .replace(/([a-zA-Z0-9])\?([a-zA-Z0-9\s])/g, '$1 \u00B7 $2')
+        .trim();
+}
+// Transport points & fares
 
 const TRANSPORT_POINTS = {
     bst: [
-        { id:'halte-gladag',        name:'Halte Gladag (BST)',             coords:[-7.5697, 110.8295] },
-        { id:'halte-sriwedari',     name:'Halte Sriwedari (BST)',          coords:[-7.5625, 110.8145] },
-        { id:'halte-manahan',       name:'Halte Manahan (BST)',            coords:[-7.5510, 110.8085] },
-        { id:'halte-kartasura',     name:'Terminal Kartasura (BST)',       coords:[-7.5572, 110.7445] },
-        { id:'halte-palur',         name:'Terminal Palur (BST)',           coords:[-7.5590, 110.8795] },
-        { id:'halte-tirtonadi',     name:'Terminal Tirtonadi (BST)',       coords:[-7.5560, 110.8300] },
-        { id:'halte-laweyan',       name:'Halte Laweyan (BST)',            coords:[-7.5690, 110.7985] },
-        { id:'halte-pasar-gede',    name:'Halte Pasar Gede (BST)',         coords:[-7.5695, 110.8305] },
+        { id:'halte-gladag', name:'Halte Gladag', coords:[-7.5697, 110.8295] },
+        { id:'halte-sriwedari', name:'Halte Sriwedari', coords:[-7.5625, 110.8145] },
+        { id:'halte-manahan', name:'Halte Manahan', coords:[-7.5510, 110.8085] },
+        { id:'halte-kartasura', name:'Terminal Kartasura', coords:[-7.5572, 110.7445] },
+        { id:'halte-palur', name:'Terminal Palur', coords:[-7.5590, 110.8795] },
+        { id:'halte-tirtonadi', name:'Terminal Tirtonadi', coords:[-7.5560, 110.8300] },
+        { id:'halte-laweyan', name:'Halte Laweyan', coords:[-7.5690, 110.7985] },
+        { id:'halte-pasar-gede', name:'Halte Pasar Gede', coords:[-7.5695, 110.8305] },
     ],
     krl: [
-        { id:'st-solo-balapan',     name:'Stasiun Solo Balapan (KRL)',     coords:[-7.5579, 110.8226] },
-        { id:'st-purwosari',        name:'Stasiun Purwosari (KRL)',        coords:[-7.5660, 110.8093] },
-        { id:'st-solo-kota',        name:'Stasiun Solo Kota (KRL)',        coords:[-7.5748, 110.8278] },
-        { id:'st-sangkrah',         name:'Stasiun Sangkrah (KRL)',         coords:[-7.5730, 110.8420] },
-        { id:'st-jebres',           name:'Stasiun Jebres (KRL)',           coords:[-7.5600, 110.8545] },
+        { id:'st-solo-balapan', name:'Stasiun Solo Balapan', coords:[-7.5579, 110.8226] },
+        { id:'st-purwosari', name:'Stasiun Purwosari', coords:[-7.5660, 110.8093] },
+        { id:'st-solo-kota', name:'Stasiun Solo Kota', coords:[-7.5748, 110.8278] },
+        { id:'st-sangkrah', name:'Stasiun Sangkrah', coords:[-7.5730, 110.8420] },
+        { id:'st-jebres', name:'Stasiun Jebres', coords:[-7.5600, 110.8545] },
     ],
     angkot: [
-        { id:'ak-pasar-gede',       name:'Pasar Gede (Angkot)',            coords:[-7.5693, 110.8302] },
-        { id:'ak-tirtonadi',        name:'Terminal Tirtonadi (Angkot)',    coords:[-7.5560, 110.8300] },
-        { id:'ak-kartasura',        name:'Terminal Kartasura (Angkot)',    coords:[-7.5572, 110.7445] },
-        { id:'ak-jebres',           name:'Terminal Jebres (Angkot)',       coords:[-7.5600, 110.8545] },
-        { id:'ak-gading',           name:'Terminal Gading (Angkot)',       coords:[-7.6040, 110.8270] },
+        { id:'ak-pasar-gede', name:'Pasar Gede', coords:[-7.5693, 110.8302] },
+        { id:'ak-tirtonadi', name:'Terminal Tirtonadi', coords:[-7.5560, 110.8300] },
+        { id:'ak-kartasura', name:'Terminal Kartasura', coords:[-7.5572, 110.7445] },
+        { id:'ak-jebres', name:'Terminal Jebres', coords:[-7.5600, 110.8545] },
+        { id:'ak-gading', name:'Terminal Gading', coords:[-7.6040, 110.8270] },
     ],
     ojol: [
-        { id:'ojol-current',        name:'Lokasi saya sekarang',           coords: null },
+        { id:'ojol-current', name:'Lokasi saya sekarang', coords: null },
     ]
 };
-
-/* Tarif resmi per moda (sumber: Kemenhub & operator, 2024) */
 const TRANSPORT_FARES = {
-    bst:    { type:'flat',   amount:3700,  note:'Tarif flat BST Batik Solo Trans' },
-    krl:    { type:'flat',   amount:8000,  note:'Tarif flat KRL Commuter Line' },
-    angkot: { type:'flat',   amount:5000,  note:'Tarif flat angkot dalam kota' },
-    ojol:   { type:'per_km', perKm:2000, bookingFee:2500, minFare:7000, note:'GoRide/GrabBike: Rp 2.000/km + booking fee Rp 2.500' },
+    bst:    { type:'flat', amount:3700, note:'Tarif flat BST' },
+    krl:    { type:'flat', amount:8000, note:'Tarif flat KRL' },
+    angkot: { type:'flat', amount:5000, note:'Tarif flat angkot' },
+    ojol:   { type:'per_km', perKm:2000, bookingFee:2500, minFare:7000, note:'Rp 2rb/km + booking Rp 2.5rb' },
 };
-
-/* Haversine distance (km) antara dua koordinat [lat, lng] */
 function haversine(a, b) {
     var R = 6371;
     var dLat = (b[0] - a[0]) * Math.PI / 180;
@@ -189,8 +182,6 @@ function haversine(a, b) {
                Math.sin(dLon/2) * Math.sin(dLon/2);
     return R * 2 * Math.atan2(Math.sqrt(sin2), Math.sqrt(1-sin2));
 }
-
-/* Hitung biaya transport berdasarkan moda, titik asal, koordinat tujuan */
 function calcTransportFare(modeId, originCoords, destCoords) {
     var fare = TRANSPORT_FARES[modeId];
     if (!fare) return null;
@@ -205,12 +196,12 @@ function calcTransportFare(modeId, originCoords, destCoords) {
         };
     }
 
-    if (fare.type === 'per_km' && originCoords && destCoords) {
+    if (fare.type === 'per_km' && originCoords && destCoords && 
+        Array.isArray(originCoords) && originCoords.length === 2 &&
+        Array.isArray(destCoords) && destCoords.length === 2) {
         var km = haversine(originCoords, destCoords);
-        // Tambah 20% untuk jalan tidak lurus (faktor koreksi)
         km = km * 1.2;
         var total = Math.max(fare.minFare, Math.round(km * fare.perKm) + fare.bookingFee);
-        // Variasi ±15% untuk range
         var min = Math.round(total * 0.90 / 500) * 500;
         var max = Math.round(total * 1.15 / 500) * 500;
         return {
@@ -233,9 +224,7 @@ const MODE_RGB = {
     all:    '124,58,237',
 };
 
-/* =========================
-   STATE
-========================= */
+
 
 let filter           = 'all';
 let selected         = null;
@@ -250,11 +239,10 @@ const content     = document.getElementById('content');
 const input       = document.getElementById('searchInput');
 const suggestions = document.getElementById('suggestions');
 
-/* =========================
-   HELPERS
-========================= */
+
 
 function mode(id) {
+    if (!MODES || !MODES.length) return { id: 'all', label: 'Semua Moda', icon: 'layout-grid', color: 'var(--mode-all)' };
     return MODES.find(x => x.id === id) || MODES[0];
 }
 
@@ -264,9 +252,7 @@ function sortOptions(options) {
     return [...options].sort((a, b) => (MODE_PRIORITY[a[0]] || 9) - (MODE_PRIORITY[b[0]] || 9));
 }
 
-/* =========================
-   RENDER CHIPS
-========================= */
+
 
 function renderChips() {
     chips.innerHTML = MODES.map(m => `
@@ -279,8 +265,6 @@ function renderChips() {
     chips.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', function(event) {
             filter = button.dataset.id;
-
-            // Ripple - motivated: confirms tap location
             const rect   = button.getBoundingClientRect();
             const ripple = document.createElement('span');
             ripple.className   = 'ripple';
@@ -288,8 +272,6 @@ function renderChips() {
             ripple.style.top   = (event.clientY - rect.top)  + 'px';
             button.appendChild(ripple);
             setTimeout(() => ripple.remove(), 450);
-
-            // Fade-swap - motivated: confirms content is changing
             content.classList.add('content--fading');
             setTimeout(() => {
                 content.classList.remove('content--fading');
@@ -302,9 +284,7 @@ function renderChips() {
     lucide.createIcons();
 }
 
-/* =========================
-   RENDER CARDS (Bento Grid)
-========================= */
+// Render cards
 
 function renderCards() {
     selected = null;
@@ -362,11 +342,10 @@ function renderCards() {
     if (window.__observeCards) window.__observeCards();
 }
 
-/* =========================
-   RENDER RESULT
-========================= */
+
 
 function renderResult(destination) {
+    if (!destination) { return; }
     selected = destination;
 
     const options = sortOptions(destination.options.filter(o =>
@@ -404,8 +383,8 @@ function renderResult(destination) {
                                     <i data-lucide="${transport.icon}" width="18"></i>
                                 </div>
                                 <div class="route-main">
-                                    <b>${transport.label}${option[0] !== 'ojol' && index === 0 ? ' <span class="recommended-badge">REKOMENDASI</span>' : ''}</b>
-                                    <span>${option[1]}</span>
+                                    <b>${transport.label}</b>
+                                    <span>${sanitizeDesc(option[1])}</span>
                                 </div>
                                 <div class="route-meta">
                                     <div class="route-price">${option[2]}</div>
@@ -425,8 +404,6 @@ function renderResult(destination) {
                 }
                 <div class="cost-summary" id="costSummary">
                     <div class="cost-summary__title"><i data-lucide="wallet" width="15"></i> Estimasi Dana</div>
-
-                    <!-- Pilih titik awal transportasi -->
                     <div class="cost-origin-wrap">
                         <label class="cost-origin-label">
                             <i data-lucide="map-pin" width="13"></i>
@@ -434,7 +411,6 @@ function renderResult(destination) {
                         </label>
                         <div class="cost-origin-selects">
                             ${(function(){
-                                // Kumpulkan moda yang tersedia untuk destinasi ini
                                 var modes = [...new Set(destination.options.map(function(o){return o[0];}))];
                                 var selects = modes.map(function(modeId) {
                                     var pts = TRANSPORT_POINTS[modeId] || [];
@@ -451,22 +427,15 @@ function renderResult(destination) {
                             })()}
                         </div>
                     </div>
-
-                    <!-- Rincian biaya per moda -->
                     <div class="cost-summary__rows" id="costRows">
-                        <!-- Diisi oleh JS saat user pilih titik awal -->
                         <p class="cost-hint"><i data-lucide="arrow-up" width="12"></i> Pilih titik keberangkatan untuk melihat estimasi ongkos</p>
                     </div>
-
-                    <!-- Tiket masuk - selalu tampil -->
                     <div class="cost-divider"></div>
                     <div class="cost-row">
                         <span class="cost-row__label"><i data-lucide="ticket" width="13"></i> Tiket masuk</span>
                         <span class="cost-row__value${(ENTRY_FEES[destination.id]||{free:true}).free ? ' cost-row__value--free' : ''}">${(function(){var e=ENTRY_FEES[destination.id]||{fee:0,free:true};return e.free?'Gratis':formatRp(e.fee);})()}</span>
                     </div>
                     ${(ENTRY_FEES[destination.id]||{}).note ? '<div class="cost-note">' + ((ENTRY_FEES[destination.id]||{}).note) + '</div>' : ''}
-
-                    <!-- Total - diupdate JS -->
                     <div class="cost-total" id="costTotal" style="display:none">
                         <span>Total estimasi</span>
                         <strong id="costTotalValue">-</strong>
@@ -483,8 +452,6 @@ function renderResult(destination) {
         renderChips();
         renderCards();
     };
-
-    // Setup cost calculator — run after DOM is ready
     setTimeout(function() {
         var selects = document.querySelectorAll('.cost-origin-select');
         selects.forEach(function(sel) {
@@ -495,16 +462,12 @@ function renderResult(destination) {
         lucide.createIcons();
     }, 0);
 }
-
-/* Update cost summary berdasarkan titik awal yang dipilih */
 function updateCostSummary(destination) {
     var selects   = document.querySelectorAll('.cost-origin-select');
     var costRows  = document.getElementById('costRows');
     var costTotal = document.getElementById('costTotal');
     var costTotalValue = document.getElementById('costTotalValue');
     if (!costRows) return;
-
-    // Cek apakah ada pilihan yang terisi
     var anySelected = false;
     var rows = [];
     var minTransportAll = Infinity;
@@ -548,8 +511,6 @@ function updateCostSummary(destination) {
     }
 
     costRows.innerHTML = rows.join('');
-
-    // Hitung total: transport terpilih + tiket masuk
     var ef = ENTRY_FEES[destination.id] || { fee: 0, free: true };
     var minTotal = (minTransportAll === Infinity ? 0 : minTransportAll) + ef.fee;
     var maxTotal = maxTransportAll + ef.fee;
@@ -564,9 +525,7 @@ function updateCostSummary(destination) {
     lucide.createIcons();
 }
 
-/* =========================
-   SEARCH
-========================= */
+
 
 function search() {
     const query = input.value.trim().toLowerCase();
@@ -581,6 +540,8 @@ function search() {
         : [];
 
     suggestions.hidden = !list.length;
+    chips.style.opacity = list.length ? '0' : '1';
+    chips.style.pointerEvents = list.length ? 'none' : '';
 
     suggestions.innerHTML = list.map((d, i) => `
         <button data-id="${d.id}" style="animation-delay:${i * 50}ms">
@@ -594,6 +555,8 @@ function search() {
             const destination = DEST.find(item => item.id == button.dataset.id);
             input.value        = destination.name;
             suggestions.hidden = true;
+            chips.style.opacity = '1';
+            chips.style.pointerEvents = '';
             renderResult(destination);
         };
     });
@@ -604,16 +567,23 @@ function search() {
 input.addEventListener('input', search);
 
 document.addEventListener('click', event => {
-    if (!event.target.closest('.search-wrap')) suggestions.hidden = true;
+    if (!event.target.closest('.search-wrap')) {
+        suggestions.hidden = true;
+        chips.style.opacity = '1';
+        chips.style.pointerEvents = '';
+    }
 });
 
-/* =========================
-   GALLERY (filmstrip)
-========================= */
+// Gallery
 
 function renderGallery() {
     const stage   = document.getElementById('galleryStage');
     const filmEl  = document.getElementById('dots');
+    if (!GALLERY || !GALLERY.length) {
+        stage.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px;padding:40px 20px;"><svg width="64" height="64" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="38" stroke="var(--border-strong)" stroke-width="2"/><circle cx="28" cy="34" r="4" fill="var(--text-3)"/><circle cx="52" cy="34" r="4" fill="var(--text-3)"/><path d="M26 54 Q40 46 54 54" stroke="var(--text-3)" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg><p style="margin-top:16px;color:var(--text-3);font-size:14px;font-family:\'Plus Jakarta Sans\',sans-serif">Galeri foto tidak tersedia</p></div>';
+        filmEl.innerHTML = '';
+        return;
+    }
     const current = GALLERY[gIndex];
 
     stage.innerHTML =
@@ -664,9 +634,7 @@ function resetTimer() {
     }, 4500);
 }
 
-/* =========================
-   DARK MODE
-========================= */
+
 
 function initTheme() {
     let saved;
@@ -701,9 +669,7 @@ function initThemeToggle() {
     });
 }
 
-/* =========================
-   NAVBAR SCROLL
-========================= */
+
 
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
@@ -713,9 +679,7 @@ function initNavbarScroll() {
     }, { passive: true });
 }
 
-/* =========================
-   MOBILE MENU
-========================= */
+
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mainNav       = document.getElementById('mainNav');
@@ -746,9 +710,39 @@ function initNavOverlay() {
     if (overlay) overlay.addEventListener('click', closeMobileMenu);
 }
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+
+
+function initNavbarSearch() {
+    const trigger = document.getElementById('searchTrigger');
+    const dropdown = document.getElementById('navSearchDropdown');
+    const inputEl = document.getElementById('searchInput');
+
+    if (!trigger || !dropdown) return;
+
+    trigger.onclick = (e) => {
+        e.stopPropagation();
+        const isHidden = dropdown.hidden;
+        dropdown.hidden = !isHidden;
+        if (isHidden) {
+            setTimeout(() => inputEl.focus(), 100);
+        }
+    };
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-search-wrap')) {
+            dropdown.hidden = true;
+        }
+    });
+    if (inputEl) {
+        inputEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                dropdown.hidden = true;
+                trigger.focus();
+            }
+        });
+    }
+}
+
+
 
 function initScrollReveal() {
     const observer = new IntersectionObserver(entries => {
@@ -771,9 +765,7 @@ function initScrollReveal() {
     observeCards();
 }
 
-/* =========================
-   GALLERY GESTURES
-========================= */
+
 
 function initGestures() {
     const stage = document.getElementById('galleryStage');
@@ -788,9 +780,7 @@ function initGestures() {
     }, { passive: true });
 }
 
-/* =========================
-   MAP
-========================= */
+
 
 let map;
 
@@ -809,15 +799,21 @@ function initMap() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    DEST.forEach(destination => {
-        const marker = L.marker(destination.coords).addTo(map);
-        marker.bindPopup(`
-            <div style="font-family:'Plus Jakarta Sans',sans-serif;padding:4px 2px;">
-                <strong style="font-size:13px;color:#7c3aed;">${destination.name}</strong><br>
-                <span style="font-size:11px;color:#9ca3af;">${destination.category}</span>
-            </div>
-        `);
-    });
+    if (!DEST || !DEST.length) {
+        L.marker([-7.5670, 110.8300]).addTo(map)
+         .bindPopup('<div style="font-family:\'Plus Jakarta Sans\',sans-serif;padding:8px 10px;"><strong style="font-size:13px;color:#ec4899;">Data destinasi tidak tersedia</strong><br><span style="font-size:11px;color:#9ca3af;">Periksa koneksi database</span></div>')
+         .openPopup();
+    } else {
+        DEST.forEach(destination => {
+            const marker = L.marker(destination.coords).addTo(map);
+            marker.bindPopup(`
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;padding:4px 2px;">
+                    <strong style="font-size:13px;color:#7c3aed;">${destination.name}</strong><br>
+                    <span style="font-size:11px;color:#9ca3af;">${destination.category}</span>
+                </div>
+            `);
+        });
+    }
 
     map.on('click', event => {
         if (!selectingMapOrigin) return;
@@ -840,20 +836,14 @@ function setOrigin(lat, lng) {
     originMarker.bindPopup('Posisi awal perjalanan').openPopup();
 }
 
-/* =========================
-   ROUTE PLANNER
-========================= */
+
 
 function initRoutePlanner() {
     const destinationSelect = document.getElementById('routeDestination');
     const status            = document.getElementById('plannerStatus');
     const result            = document.getElementById('plannerResult');
-
-    // Preserve blank first option, then populate from DEST
     destinationSelect.innerHTML = '<option value="">Pilih destinasi...</option>' +
         DEST.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
-
-    // Float label when select gets a real value
     destinationSelect.addEventListener('change', function() {
         const wrap = this.closest('.field-wrap');
         if (wrap) wrap.classList.toggle('field-wrap--active', this.value !== '');
@@ -920,30 +910,74 @@ function initRoutePlanner() {
             const distance  = (data.routes[0].distance / 1000).toFixed(1);
             const duration  = Math.ceil(data.routes[0].duration / 60);
             const modeLabel = selectedMode === 'public' ? 'BST/KRL/angkot' : (mode(selectedMode) || {}).label || selectedMode;
+            var km = parseFloat(distance);
+            var ef = ENTRY_FEES[destination.id] || { fee: 0, free: true, note: '' };
 
-            // Build transport fare summary for this destination
-            var destOptions = destination.options.filter(function(o){
-                return selectedMode === 'public'
-                    ? o[0] !== 'ojol'
-                    : (selectedMode === 'all' ? true : o[0] === selectedMode);
-            });
-            if (!destOptions.length) destOptions = destination.options;
-            var destFares = destOptions.map(function(o){ return parseFare(o[2]); });
-            var fareMin = destFares.length ? Math.min.apply(null, destFares.map(function(f){return f.min;})) : 0;
-            var fareMax = destFares.length ? Math.max.apply(null, destFares.map(function(f){return f.max;})) : 0;
-            var fareStr = fareMin === fareMax ? formatRp(fareMin) : formatRp(fareMin) + ' - ' + formatRp(fareMax);
+            var modesFareCalc = [];
+            if (selectedMode === 'public' || selectedMode === 'bst' || selectedMode === 'all') {
+                modesFareCalc.push({ id:'bst',    label:'BST Batik Solo Trans', fare:3700,  fareStr:'Rp 3.700', fareMax:3700,  note:'Tarif flat, tidak per km' });
+            }
+            if (selectedMode === 'public' || selectedMode === 'krl' || selectedMode === 'all') {
+                modesFareCalc.push({ id:'krl',    label:'KRL Commuter Line',    fare:8000,  fareStr:'Rp 8.000', fareMax:8000,  note:'Tarif flat Solo-Jogja' });
+            }
+            if (selectedMode === 'public' || selectedMode === 'angkot' || selectedMode === 'all') {
+                modesFareCalc.push({ id:'angkot', label:'Angkot',               fare:5000,  fareStr:'Rp 5.000', fareMax:5000,  note:'Tarif flat dalam kota' });
+            }
+            if (selectedMode === 'ojol' || selectedMode === 'all') {
+                var ojolBase = Math.round(km * 2000 / 500) * 500 + 2500;
+                var ojolMin  = Math.max(7000, Math.round(ojolBase * 0.9 / 500) * 500);
+                var ojolMax  = Math.round(ojolBase * 1.15 / 500) * 500;
+                modesFareCalc.push({ id:'ojol', label:'Ojol (GoRide/GrabBike)', fare:ojolMin, fareMax:ojolMax,
+                    fareStr: ojolMin===ojolMax ? formatRp(ojolMin) : formatRp(ojolMin)+' - '+formatRp(ojolMax),
+                    note:'Rp 2.000/km + booking Rp 2.500' });
+            }
+            var availModes = destination.options.map(function(o){return o[0];});
+            modesFareCalc = modesFareCalc.filter(function(m){ return availModes.indexOf(m.id) !== -1; });
+            if (!modesFareCalc.length) {
+                modesFareCalc = destination.options.map(function(o){
+                    var fare = parseFare(o[2]);
+                    var m = mode(o[0]);
+                    return { id:o[0], label:m.label, fare:fare.min, fareMax:fare.max,
+                             fareStr:fare.min===fare.max?formatRp(fare.min):formatRp(fare.min)+' - '+formatRp(fare.max),
+                             note:o[1] };
+                });
+            }
 
-            result.innerHTML = `
-                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;width:100%;">
-                    <i data-lucide="route" width="24" style="color:var(--accent)"></i>
-                    <strong style="color:var(--text-1);font-size:16px;">${destination.name}</strong>
-                    <span style="color:var(--text-3);font-size:14px;">${modeLabel} &middot; ${distance} km &middot; sekitar ${duration} menit${transitSummary}</span>
-                    <div class="planner-transport-cost">
-                        <i data-lucide="bus" width="14" style="color:var(--accent)"></i>
-                        <span>Estimasi ongkos: <strong>${fareStr}</strong></span>
-                    </div>
-                </div>
-            `;
+            var modeRows = modesFareCalc.map(function(m) {
+                return '<div class="pr-mode-row">'
+                     + '<div class="pr-mode-left">'
+                     + '<span class="pr-mode-dot" style="background:var(--mode-'+m.id+')"></span>'
+                     + '<div class="pr-mode-info"><span class="pr-mode-name">'+m.label+'</span>'
+                     + '<span class="pr-mode-note">'+m.note+'</span></div>'
+                     + '</div>'
+                     + '<span class="pr-mode-fare" style="color:var(--mode-'+m.id+')">'+m.fareStr+'</span>'
+                     + '</div>';
+            }).join('');
+
+            var cheapest = modesFareCalc.length ? Math.min.apply(null, modesFareCalc.map(function(m){return m.fare;})) : 0;
+            var priciest = modesFareCalc.length ? Math.max.apply(null, modesFareCalc.map(function(m){return m.fareMax||m.fare;})) : 0;
+            var totalMin = cheapest + ef.fee;
+            var totalMax = priciest + ef.fee;
+            var totalStr = totalMin===totalMax ? formatRp(totalMin) : formatRp(totalMin)+' - '+formatRp(totalMax);
+
+            result.innerHTML =
+                '<div class="pr-result">'
+              + '<div class="pr-header">'
+              + '<i data-lucide="route" width="20"></i>'
+              + '<div><strong class="pr-dest-name">'+destination.name+'</strong>'
+              + '<span class="pr-route-info">'+distance+' km &nbsp;&middot;&nbsp; sekitar '+duration+' menit</span>'
+              + '</div></div>'
+              + '<div class="pr-section-label"><i data-lucide="bus" width="12"></i> Estimasi ongkos transport</div>'
+              + '<div class="pr-mode-list">'+modeRows+'</div>'
+              + '<div class="pr-divider"></div>'
+              + '<div class="pr-ticket-row">'
+              + '<span class="pr-ticket-label"><i data-lucide="ticket" width="13"></i> Tiket masuk</span>'
+              + '<span class="pr-ticket-value'+(ef.free?' pr-ticket-free':'')+'">'+(ef.free?'Gratis':formatRp(ef.fee))+'</span>'
+              + '</div>'
+              + (ef.note?'<p class="pr-ticket-note">'+ef.note+'</p>':'')
+              + '<div class="pr-total"><span>Total estimasi</span><strong class="pr-total-value">'+totalStr+'</strong></div>'
+              + '<p class="pr-disclaimer">*Tarif dapat berubah. Cek info terbaru sebelum berangkat.</p>'
+              + '</div>';
             status.textContent = 'Rute berhasil ditampilkan. Gunakan detail moda di kartu destinasi untuk transit.';
             lucide.createIcons();
         } catch(e) {
@@ -954,14 +988,13 @@ function initRoutePlanner() {
     };
 }
 
-/* =========================
-   INITIALIZE
-========================= */
+
 
 initTheme();
 initThemeToggle();
 initNavbarScroll();
 initNavOverlay();
+initNavbarSearch();
 renderChips();
 renderCards();
 renderGallery();
@@ -970,11 +1003,3 @@ initMap();
 initRoutePlanner();
 initGestures();
 initScrollReveal();
-
-
-
-
-
-
-
-
